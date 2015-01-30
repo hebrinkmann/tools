@@ -1,0 +1,8 @@
+if [ "x$2" = "x" ] 
+then
+	start=git-svn
+else
+	start=$2
+fi
+
+git filter-branch --msg-filter 'sed "1 s/^\(\[.*\]\)\?\s*/[$1] /"' $2..HEAD
