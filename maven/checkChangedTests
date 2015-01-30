@@ -1,0 +1,7 @@
+#!/bin/bash
+tests=`git diff --name-only git-svn | grep src/test | sed 's#^.*/src/test/java/##' | sed 's/.java$//' | tr / . | paste -d, -s`
+
+echo $tests
+
+mvn test -Dtest="$tests" -DfailIfNoTests=false
+
