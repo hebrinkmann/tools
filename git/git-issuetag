@@ -5,4 +5,5 @@ else
 	start=$2
 fi
 
-git filter-branch --msg-filter 'sed "1 s/^\(\[.*\]\)\?\s*/[$1] /"' $2..HEAD
+echo "Tag: [$1]"
+git filter-branch --msg-filter "sed '1 s/^\(\[.*\]\)\?\s*/[$1] /'" $2..HEAD
