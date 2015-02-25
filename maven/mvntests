@@ -1,5 +1,5 @@
 #!/bin/bash
-tests=`find . -name "*Test.java" | grep "$1" | sed 's#.*/src/test/java/\(.*\)\.java#\1#' | tr / . | paste -d, -s`
+tests=`find . -name "*Test*.java" | grep "$1" | sed 's#.*/src/test/java/\(.*\)\.java#\1#' | tr / . | paste -d, -s`
 
 echo "Running tests: "$tests
 mvn test -DfailIfNoTests=false -Dtest=$tests
