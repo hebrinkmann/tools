@@ -5,7 +5,7 @@
 	<xsl:output method="text" encoding="ISO-8859-1"/>
 
 	<xsl:template match="/">
-		<xsl:text>Aufgabe; Storypoints&#xa;</xsl:text>
+		<xsl:text>Aufgabe; Storypoints; Version&#xa;</xsl:text>
 		<xsl:for-each select="/map/node">
 			<xsl:call-template name="node"/>
 		</xsl:for-each>
@@ -24,6 +24,11 @@
 					<xsl:value-of select="substring-after(@TEXT, 'c:')"/>
 				</xsl:for-each>
 			</xsl:variable>
+			<xsl:variable name="version">
+				<xsl:for-each select="node[starts-with(@TEXT, 'v:')]">
+					<xsl:value-of select="substring-after(@TEXT, 'v:')"/>
+				</xsl:for-each>
+			</xsl:variable>
 
 			<xsl:choose>
 				<xsl:when test="substring(@TEXT, string-length(@TEXT)) = '.'"/>
@@ -33,6 +38,8 @@
 					<xsl:value-of select="@TEXT"/>
 					<xsl:text>; </xsl:text>
 					<xsl:value-of select="$complexity"/>
+					<xsl:text>; </xsl:text>
+					<xsl:value-of select="$version"/>
 					<xsl:text>&#xa;</xsl:text>
 
 					<xsl:if test="string-length($complexity) = 0">
